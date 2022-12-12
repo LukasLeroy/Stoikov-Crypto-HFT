@@ -13,7 +13,7 @@ Date: 20/03/2022
 # np.random.seed(1)
 
 
-class MarketMakingBot:
+class StoikovModel:
     def __init__(self):
         pass
 
@@ -352,7 +352,7 @@ class MarketMakingBot:
 
 
 if __name__ == '__main__':
-    bot = MarketMakingBot()
+    bot = StoikovModel()
 
     """
     Below are the function calls for the graphs in the document.
