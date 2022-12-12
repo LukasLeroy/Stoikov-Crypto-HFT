@@ -5,8 +5,6 @@ import math
 import random
 
 """
-Flovtec Quantitative Trader Task
-
 Author: Jimmy Yeung
 Date: 20/03/2022
 """
