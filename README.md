@@ -21,7 +21,7 @@ $$
 where $k$ is an arbitrary parameter.
 
 ## Inventory Limit
-I set a limit on our inventory position to a maximum of 20 positions long or 20
+For this model, I set a limit on our inventory position to a maximum of 20 positions long or 20
 positions short.
 
 ## Modelling Orders Getting Filled
