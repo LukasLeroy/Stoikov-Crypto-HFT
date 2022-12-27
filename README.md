@@ -3,50 +3,50 @@ To see the full report, please click [here](https://github.com/jyeung205/Stoikov
 
 ## Model
 
-### Theoretical Price
-The theoretical price $r_t$ is defined as
+The Theoretical Price, $r_t$, is defined as
 
 $$
-r_t = s_t - q_t \gamma \sigma^2(T-t)
+r_t = s_t - q_t \gamma \sigma^2(T-t),
 $$
 
-### Bid-Ask Spread
-The bid-ask spread $\delta_t^a + \delta_t^b$ is defined as
+where $s_t$ is the mid-price, $q_t$ the number of units of inventory, $\sigma$ the volatility of s, $T$ the final time and $\gamma$ the risk aversion parameter.
+
+The Bid-Ask Spread, $\delta_t^a + \delta_t^b$, is defined as
 
 $$
-\delta_t^a + \delta_t^b = \gamma\sigma(T-t) + \frac{2}{\gamma} \text{ln}(1+\frac{\gamma}{k})
+\delta_t^a + \delta_t^b = \gamma\sigma(T-t) + \frac{2}{\gamma} \text{ln}(1+\frac{\gamma}{k}),
 $$
 
-### Inventory Limits
-In our trading strategy, we set a limit on our inventory position to a maximum of 20 positions long or 20
+where $k$ is an arbitrary parameter.
+
+## Inventory Limit
+I set a limit on our inventory position to a maximum of 20 positions long or 20
 positions short.
 
 ## Model Trading Intensity
-To model market trading intensity, we introduce the Poisson intensity parameter λ which Avellaneda and Stoikov derive as
+It is rational to assume that the probability of trading reduces exponentially as the bid-ask prices
+become further away from the mid-price $s_t$. To model market trading intensity, I introduce the Poisson intensity parameter $\lambda$
 
-$$ λ(δ) = e−kδ $$
+$$ \lambda(\delta) = e^{−k\delta} $$
 
-where k is an arbitrary constant and the bid price distance δb t and ask price distance δa
-t is
+where k is an arbitrary constant and the bid price distance $\delta^b_t$ and ask price distance $\delta^a_t$ is
 
 $$
-δb
-t =
-st − bt
-st
+$\delta^b_t$ = \frac{s_t-b_t}{s_t},
+$$
 
-δa
-t =
-at − st
-st
+$$
+$\delta^a_t$ = \frac{a_t-s_t}{s_t}.
 $$
 
 
 ## Backtest Results
+I simulated the trading model on various pairs of cryptocurrencies. Below shows the results for Bitcoin vs USD and Ethereum vs USD.
 
+Bitcoin vs USD
 ![](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/figures/pnl/xbtusd.png?raw=true)
 
-
+Ethereum vs USD
 ![](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/figures/pnl/ethusd.png?raw=true)
 
 To see the full range of backtests, please see the Appendix in the [report](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/report.pdf).
@@ -54,7 +54,7 @@ To see the full range of backtests, please see the Appendix in the [report](http
 ---
 
 ## Histogram of PnL for different $\sigma$
-To explore the affect of volatility, $\sigma$, I simulated Brownian motions $dS_t = \sigma dt$ with different volatilities, and plotted the histogram. We can see that the variance of the PnL is larger for higher volatilities.
+To explore how volatility, $\sigma$, affected the final PnL of the trading model, I simulated various Brownian motions $dS_t = \sigma dt$ while varying the volatility. The figure below shows the histogram of the final PnL after the simulations. We can see that the variance of the final PnL is larger for higher volatilities.
 
 ![](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/figures/hist/bm_hist_sigma.png?raw=true)
 
