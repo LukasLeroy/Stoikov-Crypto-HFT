@@ -28,7 +28,9 @@ positions short.
 It is rational to assume that the probability of trading reduces exponentially as the bid-ask prices
 become further away from the mid-price $s_t$. To model orders getting filled, I introduce the Poisson intensity parameter $\lambda(\delta)$
 
-$$ \lambda(\delta) = e^{−k\delta} $$,
+$$
+\lambda(\delta) = e^{−k\delta},
+$$
 
 where k is an arbitrary constant and the bid price distance $\delta^b_t$ and ask price distance $\delta^a_t$ is defined as
 
@@ -55,7 +57,7 @@ To see the full range of backtests, please see the Appendix in the [report](http
 ---
 
 ## Histogram of PnL for different Volatilties $\sigma$
-To explore how volatility, $\sigma$, affects the final PnL of the trading model, I simulated various Brownian motions $dS_t = \sigma dW_t$ while varying $\sigma$. The figure below shows the histogram of the final PnL after the simulations. We can see that the variance of the final PnL is larger for higher volatilities.
+To explore how volatility, $\sigma$, affects the final PnL of the trading model, I simulated various Brownian motions $dS_t = \sigma dW_t$ with different $\sigma$. The figure below shows the histogram of the final PnL after the simulations. We can see that the variance of the final PnL is larger for higher volatilities.
 
 ![](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/figures/hist/bm_hist_sigma.png?raw=true)
 
