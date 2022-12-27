@@ -2,6 +2,7 @@
 Trading model and backtest based on [paper](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/papers/HighFrequencyTrading_Stoikov.pdf) by Avellaneda and Stoikov. To see the full report, please click [here](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/report.pdf).
 
 ## Model
+In high-frequency market making, it is important to consider inventory position risk. In the paper "High-frequency trading in a limit order book", Avellaneda and Stoikov derive a theoretical price which accounts for the inventory position of the market maker.
 
 The Theoretical Price, $r_t$, is defined as
 
@@ -27,9 +28,9 @@ positions short.
 It is rational to assume that the probability of trading reduces exponentially as the bid-ask prices
 become further away from the mid-price $s_t$. To model orders getting filled, I introduce the Poisson intensity parameter $\lambda(\delta)$
 
-$$ \lambda(\delta) = e^{−k\delta} $$
+$$ \lambda(\delta) = e^{−k\delta} $$,
 
-where k is an arbitrary constant and the bid price distance $\delta^b_t$ and ask price distance $\delta^a_t$ is
+where k is an arbitrary constant and the bid price distance $\delta^b_t$ and ask price distance $\delta^a_t$ is defined as
 
 $$
 \delta^b_t = \frac{s_t-b_t}{s_t},
