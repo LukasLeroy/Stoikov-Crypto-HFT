@@ -1,5 +1,5 @@
 # Stoikov Model High-Frequency Trading on Cryptocurrencies
-To see the full report, please click [here](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/report.pdf).
+Trading model and backtest based on [paper](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/papers/HighFrequencyTrading_Stoikov.pdf) by Avellaneda and Stoikov. To see the full report, please click [here](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/report.pdf).
 
 ## Model
 
@@ -9,12 +9,12 @@ $$
 r_t = s_t - q_t \gamma \sigma^2(T-t),
 $$
 
-where $s_t$ is the mid-price, $q_t$ the number of units of inventory, $\sigma$ the volatility of s, $T$ the final time and $\gamma$ the risk aversion parameter.
+where $s_t$ is the mid-price, $q_t$ the number of units of inventory, $\sigma$ the volatility of $s$, $T$ the final time and $\gamma$ the risk-aversion parameter.
 
 The Bid-Ask Spread, $\delta_t^a + \delta_t^b$, is defined as
 
 $$
-\delta_t^a + \delta_t^b = \gamma\sigma(T-t) + \frac{2}{\gamma} \text{ln}(1+\frac{\gamma}{k}),
+\delta_t^a + \delta_t^b = \gamma\sigma^2(T-t) + \frac{2}{\gamma} \text{ln}(1+\frac{\gamma}{k}),
 $$
 
 where $k$ is an arbitrary parameter.
@@ -23,20 +23,20 @@ where $k$ is an arbitrary parameter.
 I set a limit on our inventory position to a maximum of 20 positions long or 20
 positions short.
 
-## Model Trading Intensity
+## Modelling Orders Getting Filled
 It is rational to assume that the probability of trading reduces exponentially as the bid-ask prices
-become further away from the mid-price $s_t$. To model market trading intensity, I introduce the Poisson intensity parameter $\lambda$
+become further away from the mid-price $s_t$. To model orders getting filled, I introduce the Poisson intensity parameter $\lambda(\delta)$
 
 $$ \lambda(\delta) = e^{−k\delta} $$
 
 where k is an arbitrary constant and the bid price distance $\delta^b_t$ and ask price distance $\delta^a_t$ is
 
 $$
-$\delta^b_t$ = \frac{s_t-b_t}{s_t},
+\delta^b_t = \frac{s_t-b_t}{s_t},
 $$
 
 $$
-$\delta^a_t$ = \frac{a_t-s_t}{s_t}.
+\delta^a_t = \frac{a_t-s_t}{s_t}.
 $$
 
 
@@ -53,8 +53,8 @@ To see the full range of backtests, please see the Appendix in the [report](http
 
 ---
 
-## Histogram of PnL for different $\sigma$
-To explore how volatility, $\sigma$, affected the final PnL of the trading model, I simulated various Brownian motions $dS_t = \sigma dt$ while varying the volatility. The figure below shows the histogram of the final PnL after the simulations. We can see that the variance of the final PnL is larger for higher volatilities.
+## Histogram of PnL for different Volatilties $\sigma$
+To explore how volatility, $\sigma$, affects the final PnL of the trading model, I simulated various Brownian motions $dS_t = \sigma dW_t$ while varying $\sigma$. The figure below shows the histogram of the final PnL after the simulations. We can see that the variance of the final PnL is larger for higher volatilities.
 
 ![](https://github.com/jyeung205/Stoikov-Crypto-HFT/blob/main/figures/hist/bm_hist_sigma.png?raw=true)
 
